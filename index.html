@@ -1,0 +1,56 @@
+---
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include head.html %}
+</head>
+
+<body>
+    <div class="d-flex toggled" id="wrapper">
+        {% include sidebar.html %}
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="home-image">
+
+            <nav class="navbar sticky-top navbar-expand-lg home-nav-bg border-bottom">
+                <button class="btn btn-brand" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <a href="#" class="navbar-brand mb-0 h1 text-center mx-auto"></a>
+            </nav>
+
+            <div class="container">
+
+                <article class="page home-page">
+                    <h1 class="page-title" id="page-title">{{ site.title }}</h1>
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-center">
+                                    <!-- <img src="https://via.placeholder.com/750x600.png?text=Some+cool+and+inspiring+image"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <div class="thanks">
+                    <p>Special thanks to <a href="https://www.linkedin.com/in/lauren-hurst-1a41821a3/" target="_blank">Lauren Hurst</a> for all of the graphics and icons!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    {% include scripts.html %}
+
+</body>
+
+</html>
