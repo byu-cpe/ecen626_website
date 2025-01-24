@@ -33,7 +33,7 @@ plugins:
 # Turn on the button to allow students to submit PRs to change a page
 suggest_edits:
   enable: true
-  link: https://github.com/NET-BYU/networking-course/blob/master
+  link: https://github.com/byu-cpe/ecen626_website/blob/main
 
 # Set the color theme of the page
 colors:
