@@ -56,10 +56,10 @@ collections:
     output: true
     permalink: /:collection/:title/
     sort_by: number
-  homeworks:
+  activities:
     output: true
     permalink: /:collection/:name/
-    sort_by: chapter
+    sort_by: number
   pages:
     output: true
     permalink: /:name/
@@ -79,6 +79,11 @@ defaults:
     values:
       layout: "lab"
       toc: true
+  - scope:
+      path: ""
+      type: "activities"
+    values:
+      layout: "activity"
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

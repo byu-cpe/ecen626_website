@@ -27,6 +27,16 @@
             {% endfor %}
         </div>
 
+        <div class="sidebar-heading">Activities</div>
+        <div class="list-group list-group-flush">
+            {% for item in site.activities %}
+            <a href="{% link {{item.path }} %}" class="list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="{{ item.icon }}"></i>
+                {{ item.title }}
+            </a>
+            {% endfor %}
+        </div>
+
         <div class="sidebar-heading">Labs</div>
         <div class="list-group list-group-flush">
             {% for item in site.labs %}
