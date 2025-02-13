@@ -10,4 +10,4 @@ build: install
 	bundle exec jekyll build
 
 check_links: build
-	bundle exec htmlproofer --empty_alt_ignore --allow-hash-href --url-swap "^\/426:" --url-ignore "/www.linkedin.com/,/learningsuite.byu.edu/" --check-html ./_site
+	bundle exec htmlproofer --empty_alt_ignore --allow-hash-href --url-swap "^\/626:" --url-ignore "/www.linkedin.com/,/learningsuite.byu.edu/" --check-html ./_site
