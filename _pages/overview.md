@@ -5,12 +5,28 @@ title: Overview
 icon: fas fa-chalkboard-teacher
 ---
 
-[Put stuff here]
+## Resources
 
-## Source Code Sharing
-No source code should be shared between students. Students can work on assignments together, but no direct or indirect copying from another student is allowed. Students should not send their source code to other students to look at, even as a reference. This class will use a code similarity checker to determine if students are copying code. If it is determined that code was copied, both students will receive a zero for the assignment.
+- [Example of using GNU Radio to send files](https://wiki.gnuradio.org/index.php?title=File_transfer_using_Packet_and_BPSK)
+
+- [Iain Explains Signals, Systems, and Digital Comms](https://www.youtube.com/@iain_explains)
+
+- [Learn SDR with Prof Jason](https://youtube.com/playlist?list=PLywxmTaHNUNyKmgF70q8q3QHYIw_LFbrX&si=HZZwS0jXWUtxTwuf)
+  - [All of Prof Jason's flow graphs](https://gallicchio.github.io/learnSDR/)
+
+- [Practical Signal Processing](https://www.amazon.com/Practical-Signal-Processing-Mark-Owen/dp/0521854784)
+
+- [Wireless Communications From the Ground Up](https://wirelesspi.com/book/)
+
+- [Digital Communications: A Discrete-Time Approach](https://www.amazon.com/Digital-Communications-Discrete-Time-Michael-Rice/dp/B08GVGCKCC)
+
+- [Software-Defined Radio for Engineers](https://www.analog.com/en/resources/technical-books/software-defined-radio-for-engineers.html)
 
 ## Policies
+
+### Source Code Sharing
+No source code should be shared between students. Students can work on assignments together, but no direct or indirect copying from another student is allowed. Students should not send their source code to other students to look at, even as a reference. This class will use a code similarity checker to determine if students are copying code. If it is determined that code was copied, both students will receive a zero for the assignment.
+
 
 ### AI Policy
 
@@ -49,9 +65,6 @@ Rules regarding the inappropriate use of AI in EC EN and IT&C coursework
 
 #### Repercussions for violations of this policy
 It is our hope that BYU students will strive to follow this policy and discuss potential gray areas with faculty. In cases where students have violated the policy, the instructor of the specific class will determine the appropriate response which may include (a) giving them a warning and making sure they understand the policy, (b) reporting them to the honor code office, (c) giving them a reduced grade on an assignment or in a class.  
-
-### COVID-19 Statement
-Students who feel sick, including exhibiting symptoms commonly associated with COVID 19 (fever; cough; shortness of breath/difficulty breathing; chills; muscle pain; sore throat; new loss of taste or smell; etc.) should not attend class and should work with their instructor to develop a study plan for the duration of the illness.
 
 ### Honor Code
 In keeping with the principles of the BYU Honor Code, students are expected to be honest in all of their academic work. Academic honesty means, most fundamentally, that any work you present as your own must in fact be your own work and not that of another. Violations of this principle may result in a failing grade in the course and additional disciplinary action by the university. Students are also expected to adhere to the Dress and Grooming Standards. Adherence demonstrates respect for yourself and others and ensures an effective learning and working environment. It is the university's expectation, and every instructor's expectation in class, that each student will abide by all Honor Code standards. Please call the Honor Code Office at 422-2847 if you have questions about those standards.
