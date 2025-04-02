@@ -31,25 +31,25 @@ There are many methods that can be used to send additional information along wit
   <img src="{% link assets/err_mitigation/repetition_codes.svg %}" alt="A message getting sent through a noisy medium which flips bits and alters the intended payload.">
 </figure>
 
-However, this method has a low **code rate**, or ratio of data bits to total bits sent. Specifically in this example, **the code rate is 1/3**, meaning that we send an **extra 80 bits** for the message `hello`. This scales very poorly and is not ideal for large messages. Furthermore, if the noise is too high, the only solution is to increase the number of repetitions, which further reduces the code rate.
+However, this method has a low **code rate**, or ratio of data bits to total bits sent. Specifically in this example, **the code rate is 1/3**, meaning that we send an **extra 80 bits** for the message `hello`. This scales very poorly and is not ideal for large messages. Furthermore, if the noise is too high, the only solution is to increase the number of repetitions, which further reduces the code rate. For most applications, increasing the transmission power is just as reliable as increasing the number of repetitions, but it is not always possible due to regulatory limits or power constraints. Therefore, repetition codes are not preferred for most practical applications.
 
 #### Hamming Codes
 
-Another method is to use **Hamming codes**, which are a type of **forward error correction (FEC)** code. Hamming codes are a family of linear error-correcting codes that can detect and correct single-bit errors and detect two-bit errors. Named after Richard Hamming, who introduced them in 1950, these codes take a message and project the message into a higher-dimensional space. This allows the receiver to correct errors by finding the closest valid codeword to the received message. For a good explanation of this concept, see [this video](https://www.youtube.com/watch?v=X8jsijhllIA) and [its sequel](https://www.youtube.com/watch?v=b3NxrZOu_CE).
+Another method is to use **Hamming codes**, which are a type of **forward error correction (FEC)** code. Hamming codes are a family of linear error-correcting codes that can detect and correct single-bit errors or detect two-bit errors. Named after Richard Hamming, who introduced them in 1950, these codes (as well as all other FEC codes) take a message and project the message into a higher-dimensional space. This allows the receiver to correct errors by finding the closest valid codeword to the received message. For a good explanation of this concept, see [this video](https://www.youtube.com/watch?v=X8jsijhllIA) and [its sequel](https://www.youtube.com/watch?v=b3NxrZOu_CE).
 
-We define the Hamming to be an algorithm that does the following: we take a $$k$$-bit message and encodes it into a $$n$$-bit codeword with $$m$$ parity bits such that:
-
-$$
-n = k + m
-$$
-
-The number of $$m$$ parity bits is determined by the following inequality, which ensures that the code can correct single-bit errors:
+We define the Hamming to be an algorithm that does the following: we take a $$k$$-bit message and encodes it into a $$n$$-bit codeword with $$r$$ parity bits such that:
 
 $$
-2^m \geq k + m + 1
+n = k + r
 $$
 
-where each parity bit is placed at positions at positions of $$2^i$$ meaning that $$ 0 \leq i \lt m $$. This means that the parity bits are located at positions 1, 2, 4, 8, etc. in the codeword.
+The number of $$r$$ parity bits is determined by the following inequality, which ensures that the code can correct single-bit errors:
+
+$$
+2^r \geq k + r + 1
+$$
+
+where each parity bit is placed at positions at positions of $$2^i$$ meaning that $$ 0 \leq i \lt r $$. This means that the parity bits are located at positions 1, 2, 4, 8, etc. in the codeword.
 
 For example, a Hamming(7,4) code has 7 bits total, 4 of which are data bits and 3 of which are parity bits. The parity bits are calculated such that the codeword has a specific Hamming distance, which is the minimum number of bit flips required to change one codeword into another. This allows the receiver to correct errors by finding the closest valid codeword to the received message.
 
@@ -107,25 +107,25 @@ $$
 S_4 = P_4 \oplus D_5 \oplus D_6 \oplus D_7
 $$
 
-Finally, we take the syndrome and put it in a vector such that $$S = (S_1, S_2, ... S_m)$$. Then a result $$R$$, as defined by:
+Finally, we take the syndrome and put it in a vector such that $$S = (S_1, S_2, ... S_r)$$. Then an error $$E$$, as defined by:
 
 $$
-R = \bigoplus_{i=1}^{r} S_i
+E = \bigoplus_{i=1}^{r} S_i
 $$
 
-will evaluate to 0 ($$R = 0$$), indicating that the message has no errors. However, if $$ R \neq 0 $$, then the syndrome is non-zero, indicating that there is an error in the received message. The position of the error can be determined by interpreting the syndrome as a binary number. 
+will evaluate to 0 ($$E = 0$$), indicating that the message has no errors. However, if $$ E \neq 0 $$, then the syndrome is non-zero, indicating that there is an error in the received message. The position of the error can be determined by interpreting the syndrome $$S$$ as a binary number.
 
 <figure class="image mx-auto" style="max-width: 100%">
   <img src="{% link assets/err_mitigation/hamming_codes.svg %}" alt="A message getting sent through a noisy medium which flips bits and alters the intended payload.">
 </figure>
 
-Different Hamming codes can correct different numbers of errors as defined by the minimum Hamming distance $$d$$ where:
+The **Hamming distance**, as defined by:
 
 $$
 d = n - k + 1
 $$
 
-The Hamming distance describes the minimum number of bit flips required to change one valid codeword into another. For Hamming codes, the relationship between the minimum distance and error correction capabilities is as follows:
+describes the minimum number of bit flips required to change one valid codeword into another. For Hamming codes, the relationship between the minimum distance and error correction capabilities is as follows:
 
 $$
 \text{Error Correction Capability} = \left\lfloor \frac{d - 1}{2} \right\rfloor
@@ -137,9 +137,11 @@ $$
 \text{Code Rate} = \frac{k}{n}
 $$
 
-This demonstrates that as the minimum Hamming distance increases, the error correction capability also increases, but at the cost of a lower code rate. These codes are best suited for channels where single bit errors are common, such as in memory storage or communication systems with low noise levels. For bursty errors, Hamming codes may not be sufficient, and more advanced techniques like [Reed-Solomon]() codes or [convolutional codes]() may be required.
+This demonstrates that as the minimum Hamming distance increases, the error correction capability also increases, though this often comes at the cost of a lower code rate. These codes are best suited for channels where single-bit errors are common, such as in memory storage or communication systems with low noise levels.
 
-### Interleaving 
+For bursty errors, Hamming codes may not be sufficient, and more advanced techniques like [Reed-Solomon](https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction) codes may be required.
+
+### Interleaving
 While Hamming codes are effective for correcting single-bit errors, they may not perform well in the presence of burst errors, where multiple consecutive bits are corrupted.
 
 <figure class="image mx-auto" style="max-width: 100%">
@@ -154,18 +156,28 @@ One effective technique to mitigate burst errors is **interleaving**. Interleavi
 
 Upon receive a burst error, the interleaved data can be deinterleaved by reversing the process. The receiver reads the bits in the same column-wise order to reconstruct the original message. This way, even if a burst error affects multiple bits, they are distributed across different codewords, making it easier for the Hamming code to correct them.
 
-image
+<figure class="image mx-auto" style="max-width: 100%">
+  <img src="{% link assets/err_mitigation/interleave_final.svg %}" alt="A message getting sent through a noisy medium which flips bits and alters the intended payload.">
+</figure>
 
 ### Symbol Distribution and Whitening
-While forward error correction techniques like Hamming codes help correct errors, they do not address the issue of symbol distribution in the transmitted data. In many communication systems, especially those using modulation schemes like QAM (Quadrature Amplitude Modulation), it is crucial to ensure that the symbols are evenly distributed to avoid issues like inter-symbol interference (ISI) and to improve the overall performance of the system.
+While forward error correction techniques like Hamming codes help correct errors, they do not address the issue of symbol distribution in the transmitted data. In many communication systems, especially those using modulation schemes like QAM (Quadrature Amplitude Modulation), it is crucial to ensure that the symbols are evenly distributed to improve the overall performance of the system.
 
-Furthermore, if multiple of the same symbol are transmitted in a row, certain physical phenomena such as DC bias can occur, where the average power of the transmitted signal is not zero. This can lead to distortion in the received signal and make it more susceptible to errors. To mitigate this, we use a technique called **whitening**.
+Furthermore, if multiple of the same symbol are transmitted in a row, certain physical phenomena such as DC bias can occur, where the average power of the transmitted signal is not zero and can lead to distortion in the received signal and make it more susceptible to errors. To mitigate this, we use a technique called **whitening**.
 
-Whitening is a process that introduces a pseudo-random sequence to the data before transmission. This sequence is designed to ensure that the symbols are more evenly distributed over time, reducing the likelihood of long runs of the same symbol. 
+Whitening is a process that introduces a pseudo-random sequence to the data before transmission. This sequence is designed to ensure that the symbols are more evenly distributed over time, reducing the likelihood of long runs of the same symbol.
+
+<figure class="image mx-auto" style="max-width: 100%">
+  <img src="{% link assets/err_mitigation/whitening_one.svg %}" alt="A message getting sent through a noisy medium which flips bits and alters the intended payload.">
+</figure>
 
 Whitening is typically achieved by XORing the data with a pseudo-random sequence generated by a linear feedback shift register ([LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)) or a similar algorithm. This process effectively randomizes the data, making it less predictable and more robust against errors introduced by the channel.
 
 To dewhiten the received data, the receiver must apply the same pseudo-random sequence used for whitening. This ensures that the original data can be recovered correctly, even if it was transmitted through a noisy channel. The dewhitening process is simply the inverse operation of whitening, where the received data is XORed with the same pseudo-random sequence to retrieve the original message.
+
+<figure class="image mx-auto" style="max-width: 100%">
+  <img src="{% link assets/err_mitigation/whitening_recv.svg %}" alt="A message getting sent through a noisy medium which flips bits and alters the intended payload.">
+</figure>
 
 Determining the appropriate polynomial for the LFSR used in whitening is crucial. The polynomial must be chosen such that it generates a maximum-length sequence, meaning it will produce a pseudo-random sequence that covers all possible states before repeating. This ensures that the whitening process effectively randomizes the data without introducing patterns that could lead to errors.
 
@@ -178,10 +190,10 @@ Determining the appropriate polynomial for the LFSR used in whitening is crucial
 
 ## Requirements
 
-- Download source files for TX and RX modules [here]().
-- Referring to the tutorial [here](), create a block that successfully implements interleaving, whitening, and the general Hamming algorithm (not just a specific hard-coded version of it).
+- Download boilerplate and test archive for the lab [here]().
+- Create a program that successfully implements interleaving, whitening, and the general Hamming algorithm (not just a specific hard-coded version of it).
 - Run the message `"Hello World!"` through the block and connect the output to a gaussian noise channel with a signal-to-noise ratio (SNR) of 10 dB.
-- Create a corresponding receiver block that can decode the received message by dewhitening, deinterleaving, and then correcting any errors with Hamming.
+- Create a corresponding receiver block that can decode the received message by performing dewhitening, deinterleaving, and error correction using Hamming.
 
 ## Testing
 
@@ -190,4 +202,4 @@ Determining the appropriate polynomial for the LFSR used in whitening is crucial
 - [Overview of Error Correction and Detection](https://en.wikipedia.org/wiki/Error_detection_and_correction)
 - [Hamming Code](https://en.wikipedia.org/wiki/Hamming_code)
 - [Whitening Filters](https://www.allaboutcircuits.com/technical-articles/whitening-filters-help-low-power-radios-tackle-issues-caused-by-long-identical-bit-sequences/)
-
+- [Linear-feedback shift register](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
