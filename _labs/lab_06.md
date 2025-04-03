@@ -191,9 +191,13 @@ Determining the appropriate polynomial for the LFSR used in whitening is crucial
 ## Requirements
 
 - Download boilerplate and test archive for the lab [here]().
-- Create a program that successfully implements interleaving, whitening, and the general Hamming algorithm (not just a specific hard-coded version of it).
-- Run the message `"Hello World!"` through the block and connect the output to a gaussian noise channel with a signal-to-noise ratio (SNR) of 10 dB.
-- Create a corresponding receiver block that can decode the received message by performing dewhitening, deinterleaving, and error correction using Hamming.
+- Create a program that successfully implements:
+  - Interleaving and the general Hamming algorithm (not just a specific hard-coded version of it).
+  - **NOT** whitening (we will not worry about LFSR and polynomial selection), furthermore, we really don't get any benefit from it while simulating the transmission in code.
+  - Deinterleaving and the corresponding Hamming decoding.
+- Put your solutions in the `lab.py` file. You'll notice that there is a function called `gaussian_noise`. This will be used to simulate the transmission channel.
+- Run your program using a range of different message lengths and bit error probability rates. Create a few graphs that illustrate the impact of interleaving and different Hamming codes on your transmission. What conclusions can you draw about the effectiveness of these techniques in improving error resilience?
+- Test your implementation thoroughly to ensure it meets the specified requirements.
 
 ## Testing
 
