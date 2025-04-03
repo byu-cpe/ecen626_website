@@ -1,5 +1,5 @@
 ---
-title: Lab 8
+title: Lab 8 (MAC Lab)
 number: 8
 ---
 
