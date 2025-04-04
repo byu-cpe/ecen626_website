@@ -93,7 +93,14 @@ As an example, an [Example Decision Matrix](../../assets/lab03/example_decision_
 
 This part of the lab provides additional practice to help you become more familiar with designing flowgraphs in GNU radio. You will design a simple QPSK protocol and answer certain questions about the protocol you have developed. To get started, first download the [template flowgraph](../../assets/lab03/lab03_template.grc) provided for you. Your goal is to fill in the missing pieces listed below.
 
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="{% link /assets/lab03/lab03_image.jpg%}" style="display: block; margin: auto;">
+  <figcaption style="text-align: center;"><strong></strong> an image of the template GRC flow.</figcaption>
+</figure>
 
+**Part A** will ask you to create a constellation object and format a random source of data such that you can modulate it into symbols. Choose a QPSK (or higher if you'd like) constellation.
+
+**Part B** will ask you to decode the incoming data again, based on the modulation scheme that you originally chose. This should essentially be the reverse of the modulation you did in Part A.
 
 ### Protocol Design
 
@@ -101,7 +108,6 @@ You protocol should have the following properties:
 
 1. Uses QPSK to modulate data.
 2. Uses differential encoding.
-3. Be shapped with an RRC filter.
 
 #### Transmitter Design
 
@@ -110,8 +116,7 @@ Your transmitter flow should:
 1. Generate random binary data, or use a file as an input.
 2. Apply differential encoding to the data.
 3. Modulate the data using QPSK.
-4. Shape the signal with an RRC filter.
-5. Transmit.
+4. Transmit.
 
 #### Receiver Design
 
@@ -122,14 +127,23 @@ The receiver flowgraph will:
 3. Perform carrier synchronization.
 4. Demodulate the QPSK symbols.
 5. Decode the differential encoding.
-6. Extract and display the received data, either live or in a file.
+6. Extract and display the received data.
 
 ### Testing Your Protocol
 
-After you feel that your protocol 
+You'll notice in the template there is a variable called "display_width" (highlighted in red in the reference image). This changes both the number of random samples and the number of points displayed on the GUI Time Sync. There is also a GUI range called "delay" that allows you to delay your output. This is simply so you can delay your output to the nearest multiple of the input and see if your incoming data exactly matches your randomly generated data. An image is provided below for reference.
 
-1. **Over-the-Air Test**: Transmit using antennas and evaluate performance in different environments.
-2. **Bit Error Rate (BER) Measurement**: Compare transmitted and received data to estimate BER.
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="{% link /assets/lab03/lab03_question.jpg%}" style="display: block; margin: auto;">
+  <figcaption style="text-align: center;"><strong></strong> an image of the GRC graph output.</figcaption>
+</figure>
+
+Answer the following questions:
+
+- **Consistency**: How consistently does your protocol work? At what range do you stop seeing the data correctly?
+  - Can you come up with any factors that improve the range of your signal?
+- **Latency**: Adjust your "delay" range until your incoming data lines up with your outgoing data stream. Look at the number of symbols you had to delay. If that number of symbols (*symbols*, not *samples*) was exactly the timing difference between the signals, what would the latency be? Come up with a formula (in seconds) for the set of possible latencies that exist assuming that the signal is delayed some number `n` of repeats behind the original signal (i.e. some set `n*S + d`, where `S = display_width`, and `d = delay`). What is the lowest latency your signal could have? Can you make a guess as to what the actual latency of your signal is?
+- **Complications**: Come up with a different modulation scheme than the one you are working with (again QPSK or higher). Try to implement it. Assuming that it worked (whether it did or not isn't quite as important since you've already done one), what changes would it have made to the protocol you developed? What kinds of tradeoffs did you make to achieve those changes?
 
 ## Resources
 
