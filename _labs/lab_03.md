@@ -133,10 +133,10 @@ The receiver flowgraph will:
 
 You'll notice in the template there is a variable called "display_width" (highlighted in red in the reference image). This changes both the number of random samples and the number of points displayed on the GUI Time Sync. There is also a GUI range called "delay" that allows you to delay your output. This is simply so you can delay your output to the nearest multiple of the input and see if your incoming data exactly matches your randomly generated data. An image is provided below for reference.
 
-<figure class="image mx-auto" style="max-width: 750px">
-  <img src="{% link /assets/lab03/lab03_question.jpg%}" style="display: block; margin: auto;">
+<!-- <figure class="image mx-auto" style="max-width: 750px">
+  <img src="{% link /assets/lab03/lab03_image.jpg%}" style="display: block; margin: auto;">
   <figcaption style="text-align: center;"><strong></strong> an image of the GRC graph output.</figcaption>
-</figure>
+</figure> -->
 
 Answer the following questions:
 
