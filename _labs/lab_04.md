@@ -26,7 +26,7 @@ Let’s get started with ZMQ without using GNU Radio. We will be using the publi
 If you are working in your radioconda environment, the ZMQ Python package should already be installed for you. Otherwise, install it using `pip install pyzmq`.
 
 ## Task 2
-Now lets take GNU Radio and put it in between your publisher and subscriber. Use [this]({% link files/send_through.py %}) GNU Radio flow graph. It uses OFDM blocks because they make it easy to send and receive characters. This will be an easy way for us to send text data without getting too far into the weeds of GNU Radio. 
+Now lets take GNU Radio and put it in between your publisher and subscriber. Use [this]({% link files/send_through.grc %}) GNU Radio flow graph. It uses OFDM blocks because they make it easy to send and receive characters. This will be an easy way for us to send text data without getting too far into the weeds of GNU Radio. 
 
 1. In the GRC flow graph, remove the vector source block, and replace it with the ZMQ Subscriber block. 
 2. Try starting the flow graph and then running your task1_pub.py. Take a screenshot of what your GNU Radio GUI looks like while the data from the text file is being sent.
