@@ -1,5 +1,5 @@
 ---
-title: Lab 8 (MAC Lab)
+title: MAC Lab
 number: 8
 ---
 
@@ -12,20 +12,21 @@ Some source code is provided for you. Begin by downloading that code. You should
 
 The packet structure you should implement is shown in the table below.
 
-| SRC      | DST      | LEN     | PAYLOAD       | CRC     |
-| :-----:  | :-----:  | :----:  | :----------:  | :----:  |
-| 6 bytes  | 6 bytes  | 2 bytes | 0-8192 bytes  | 2 bytes |
+|   SRC   |   DST   |   LEN   |   PAYLOAD    |   CRC   |
+| :-----: | :-----: | :-----: | :----------: | :-----: |
+| 6 bytes | 6 bytes | 2 bytes | 0-8192 bytes | 2 bytes |
 
 ## Objectives
-1) Packetize a payload of bytes
-2) Send/Receive packets using ZMQ sockets (REQ/REP style)
-4) Parse a packet's header
-5) Strip the header to recover the data
+- Packetize a payload of bytes
+- Send/Receive packets using ZMQ sockets (REQ/REP style)
+- Parse a packet's header
+- Strip the header to recover the data
 
 ## Required Materials
-1) Your own computer to act as a client and server
-2) python (I used 3.13.0)
-3) ZMQ library; run the following in your virtual environment
+1. Your own computer to act as a client and server
+2. python (I used 3.13.0)
+3. ZMQ library; run the following in your virtual environment
+
 ```bash
 pip install pyzmq
 ```
@@ -37,20 +38,22 @@ This file contains two classes: one that takes in a payload and constructs heade
 
 ## client.py
 This file focuses on implementing a ZMQ REQ (request) socket. In this file, you should read in payload data from some input .txt file, packetize that payload, then send the packet to a server (which you will implement in server.py). Further details are found in comments within the .py file. The client can be run with the following command:
+
 ```bash
 python3 client.py -f [INPUT_FILE] -d [DESTINATION_MAC_ADDRESS]
 ```
 You can also get "help" info about proper usage of this command by running:
+
 ```bash
 python3 client.py -h
 ```
 
 ## server.py
 This file also focuses on ZMQ, but instead you will implement a REP (reply) socket. This script should receive packets from client.py, parse those packets to verify their validity and retrieve the payload, then write the payload contents to some output file. Further details are found in comments within the .py file. The server can be run with the following command:
+
 ```bash
 python3 server.py
 ```
 
 ## Resources
-* ZMQ docs:
-https://pyzmq.readthedocs.io/en/latest/api/zmq.html
+- [ZMQ docs](https://pyzmq.readthedocs.io/en/latest/api/zmq.html)
