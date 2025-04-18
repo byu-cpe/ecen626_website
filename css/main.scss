@@ -3,6 +3,8 @@
 ---
 
 @charset "utf-8";
+@use "sass:color";
+
 
 // Our variables
 $base-font-family: {{ site.fonts.base}};
@@ -23,8 +25,8 @@ $selection-color: {{ site.colors.text_selection_color }};
 $sidebar-hover-color: {{ site.colors.sidebar_hover_color }};
 
 $grey-color: #424242;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark: darken($grey-color, 25%);
+$grey-color-light: color.adjust($grey-color, $lightness: 40%);
+$grey-color-dark: color.adjust($grey-color, $lightness: -25%);
 
 // Width of the content area
 $content-width: 800px;

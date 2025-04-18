@@ -4,9 +4,10 @@ number: 2
 icon: fa-duotone fa-solid fa-telescope
 ---
 
-<div class="alert alert-primary" role="alert">
+<div class="alert alert-warning d-sm-inline-flex activity-notice" role="alert">
   This activity will be done in class!
 </div>
+
 
 ## Overview
 

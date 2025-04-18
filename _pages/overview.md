@@ -8,6 +8,7 @@ icon: fas fa-chalkboard-teacher
 ## Resources
 
 - [Example of using GNU Radio to send files](https://wiki.gnuradio.org/index.php?title=File_transfer_using_Packet_and_BPSK)
+- https://www.youtube.com/watch?v=UpiaL1Hr6-s&t=620s
 
 - [Iain Explains Signals, Systems, and Digital Comms](https://www.youtube.com/@iain_explains)
 
