@@ -2,10 +2,24 @@
 <html lang="en">
 
 <head>
-
   {% include head.html %}
 
+  <!-- MathJax Config -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+
+  <!-- MathJax Script -->
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+im
 
 <body>
   <div class="d-flex" id="wrapper">
