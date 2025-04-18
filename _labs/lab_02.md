@@ -22,7 +22,7 @@ Making an AM radio in Gnuradio may be even easier than the FM radio from the pre
 1. Download any medium-length song and convert it to a WAV file at a sample rate of 32 kHz
 1. Make the following flow:
 
-![AM radio flow]({% link assets/lab2/am-radio-flow.png %})
+![AM radio flow]({% link assets/lab_02/am-radio-flow.png %})
 
 * You may have to run the flow at a higher sample rate than the WAV file. Add a resampler after
     the WAV source and decimate at the end with the BPF. Interpolation will interpolate 31 samples
@@ -71,7 +71,7 @@ $$X(−\omega)=X^∗(\omega)$$
 ### Single-Sideband Modulation
 We can exploit this fact to make our AM radio more bandwidth efficient.
 
-![SSB derivation]({% link assets/lab2/ssb-derivation.png %})
+![SSB derivation]({% link assets/lab_02/ssb-derivation.png %})
 
 *Image source: [Wikipedia - Single-sideband modulation](https://en.wikipedia.org/wiki/Single-sideband_modulation)*
 

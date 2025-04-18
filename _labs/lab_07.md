@@ -25,14 +25,14 @@ LoRa uses **linear chirps** exclusively, which can either be:
 - **Down chirps**: frequency decreases over time
 
 <figure class="image mx-auto" style="max-width: 750px">
-  <img src="{% link /assets/lab_07/up_and_down_chirps.png%}" style="display: block; margin: auto;">
+  <img src="{% link /assets/lab_07/up_and_down_chirps.png %}" style="display: block; margin: auto;">
   <figcaption style="text-align: center;"><strong></strong> Up and Down Chirps in Time and Spectrogram Domains</figcaption>
 </figure>
 
 Instead of visualizing chirps in the frequency domain, we often use a spectrogram, which plots time on the x-axis and frequency on the y-axis as chirp change in frequnecy as a function of time. We define $f_0$ as the starting frequency and $f_1$ as the ending frequency of the chirp. One powerful feature of linear chirps is the ability to apply a **modulo operation** in the time domain. Instead of starting a chirp at $f_0$, we can start it at an arbitrary frequency $f_i$, increase linearly until reaching $f_1$, wrap around to $f_0$, and continue until ending at $f_i$. This results in a **cyclically shifted chirp**.
 
 <figure class="image mx-auto" style="max-width: 750px; height: auto;">
-    <img src="{% link assets/lab_07/modulo_chirp.png%}" style="display: block; margin: auto; height: 400px;">
+    <img src="{% link assets/lab_07/modulo_chirp.png %}" style="display: block; margin: auto; height: 400px;">
     <figcaption style="text-align: center;"><strong></strong> Modulo Operation Performed on a Chirp</figcaption>
 </figure>
 
@@ -110,7 +110,7 @@ Because the timing is not likely to be synchronized, the repeated symbol read in
 The LoRaPHY also makes use of Gray codes, which is a remapping of binary values such that an integer increase of 1 corresponds to only 1 bit flip. Because LoRa is unlike other modulation schemes in how it encodes symbols, the most common misinterpretation of a symbol is by 1 integer due to clock misalignment. Gray coding allows for these errors to only impact the received message by 1 bit which can be easily managed by forward error correction codes.
 
 | Decimal | Binary | Gray Code |
-|---------|--------|-----------|
+| ------- | ------ | --------- |
 | 0       | 000    | 000       |
 | 1       | 001    | 001       |
 | 2       | 010    | 011       |
