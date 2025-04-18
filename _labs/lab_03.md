@@ -1,5 +1,5 @@
 ---
-title: Lab 3
+title: Protocol Design
 number: 3
 ---
 
@@ -21,19 +21,19 @@ By the end of this lab, you will:
 
 What factors affect the design of a wireless protocl? Here is a table of considerations that someone might need to take into account when designing a wireless protocol:
 
-| **Consideration**             | **Explanation** |
-|-------------------------------|-----------------|
-| Data rate / Throughput        | The rate at which *useful* data is received. |
-| Range                         | How far the wireless protocol is expected to be able to reach. |
-| Power                         | How much energy can your antenna actually use? |
-| Multiple Access Control       | How many people can talk using your protocol? Can they talk at the same time? How do you know who is who? |
-| Data quantity                 | How much data is being sent at once? a few bytes, or a large stream? |
-| Spectral Usage                | How much space does your protocol use in the frequency domain? How much is it allowed to use? How well does it use the space given? |
-| Noise Expectations            | What else lives in your freuency band? Do you expect your signal to live above the noise floor? |
-| Synchronization               | How does your receiver know when your transmitter is talking to it? |
-| Networking and Wide Access    | Who else can I actually talk to? Am I limited to a gateway, or can I talk to any nearby peer? What kind of information can I actually get from talking? |
-| Processing Power              | How difficult is it to decode this signal? |
-| Security and Privacy          | Security defines your signals ability to get from one place to another without being replaced or changed. Privacy defines whether someone else can get the message out of your signal, even if it wasn't intended for them. |
+| **Consideration**          | **Explanation**                                                                                                                                                                                                             |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data rate / Throughput     | The rate at which *useful* data is received.                                                                                                                                                                                |
+| Range                      | How far the wireless protocol is expected to be able to reach.                                                                                                                                                              |
+| Power                      | How much energy can your antenna actually use?                                                                                                                                                                              |
+| Multiple Access Control    | How many people can talk using your protocol? Can they talk at the same time? How do you know who is who?                                                                                                                   |
+| Data quantity              | How much data is being sent at once? a few bytes, or a large stream?                                                                                                                                                        |
+| Spectral Usage             | How much space does your protocol use in the frequency domain? How much is it allowed to use? How well does it use the space given?                                                                                         |
+| Noise Expectations         | What else lives in your freuency band? Do you expect your signal to live above the noise floor?                                                                                                                             |
+| Synchronization            | How does your receiver know when your transmitter is talking to it?                                                                                                                                                         |
+| Networking and Wide Access | Who else can I actually talk to? Am I limited to a gateway, or can I talk to any nearby peer? What kind of information can I actually get from talking?                                                                     |
+| Processing Power           | How difficult is it to decode this signal?                                                                                                                                                                                  |
+| Security and Privacy       | Security defines your signals ability to get from one place to another without being replaced or changed. Privacy defines whether someone else can get the message out of your signal, even if it wasn't intended for them. |
 
 As you probably guessed, this list isn't exhaustive. In fact, its probably only a very small portion of the considerations. The only way come close to listing all the considerations is to ensure that the protocol is **application specific**. This means that any given protocol has parameters and features specifically designed to meet certain needs. Whatever requirements you decide are most important for a particular application will impose constraints on all your other factors. For example, a low power system will often have a more limited range than a higher power one. It is your job as a wireless protocol designer to come up with the balance of what to prioritize, and where else to sacrifice in order to make those priorities come true.
 
@@ -45,19 +45,19 @@ WiFi (IEEE 802.11) is one of the most widely used wireless communication protoco
 
 Trade-offs and Design Choices
 
-| **Factor** | **WiFi Design Considerations** |
-|------------|--------------------------------|
-| Data Rate / Throughput | WiFi is designed for high-speed data transfer, with modern standards (WiFi 6E, 802.11ax) supporting gigabit speeds. However, speeds depend heavily on signal conditions, interference, and distance. |
-| Range | WiFi is optimized for indoor environments, with ranges typically around 30–50 meters indoors and up to 100 meters outdoors. Walls and obstacles significantly reduce range. |
-| Power | WiFi is relatively power-hungry compared to other wireless protocols, especially for battery-operated devices, which is why alternatives like Bluetooth and LoRa exist for low-power applications. |
+| **Factor**                    | **WiFi Design Considerations**                                                                                                                                                                           |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data Rate / Throughput        | WiFi is designed for high-speed data transfer, with modern standards (WiFi 6E, 802.11ax) supporting gigabit speeds. However, speeds depend heavily on signal conditions, interference, and distance.     |
+| Range                         | WiFi is optimized for indoor environments, with ranges typically around 30–50 meters indoors and up to 100 meters outdoors. Walls and obstacles significantly reduce range.                              |
+| Power                         | WiFi is relatively power-hungry compared to other wireless protocols, especially for battery-operated devices, which is why alternatives like Bluetooth and LoRa exist for low-power applications.       |
 | Multiple Access Control (MAC) | Uses Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) to manage access. Devices must "listen" before transmitting to avoid interference, which can lead to delays in congested networks. |
-| Data Quantity | Designed for large amounts of data (e.g., video streaming, file transfers). Modern standards use MIMO  (Multiple-Input Multiple-Output) to increase throughput. |
-| Spectral Usage | Uses wide frequency channels (20 MHz, 40 MHz, 80 MHz, or even 160 MHz in newer standards). This wide bandwidth allows for high data rates but increases susceptibility to interference. |
-| Noise Expectations | Operates in unlicensed bands (e.g., 2.4 GHz, 5 GHz), which are crowded with many other devices (Bluetooth, microwaves, etc.), making interference a major issue. |
-| Synchronization | Uses preamble sequences to help receivers synchronize with incoming data. |
-| Networking & Wide Access | Supports star topology, where devices connect to a central router. Mesh networks are possible but less common in consumer setups. |
-| Processing Power | WiFi requires significant processing power for encryption, error correction, and modulation/demodulation. |
-| Security & Privacy | Uses WPA2/WPA3 encryption to protect data, but networks can still be vulnerable to attacks like packet sniffing or deauthentication attacks. |
+| Data Quantity                 | Designed for large amounts of data (e.g., video streaming, file transfers). Modern standards use MIMO  (Multiple-Input Multiple-Output) to increase throughput.                                          |
+| Spectral Usage                | Uses wide frequency channels (20 MHz, 40 MHz, 80 MHz, or even 160 MHz in newer standards). This wide bandwidth allows for high data rates but increases susceptibility to interference.                  |
+| Noise Expectations            | Operates in unlicensed bands (e.g., 2.4 GHz, 5 GHz), which are crowded with many other devices (Bluetooth, microwaves, etc.), making interference a major issue.                                         |
+| Synchronization               | Uses preamble sequences to help receivers synchronize with incoming data.                                                                                                                                |
+| Networking & Wide Access      | Supports star topology, where devices connect to a central router. Mesh networks are possible but less common in consumer setups.                                                                        |
+| Processing Power              | WiFi requires significant processing power for encryption, error correction, and modulation/demodulation.                                                                                                |
+| Security & Privacy            | Uses WPA2/WPA3 encryption to protect data, but networks can still be vulnerable to attacks like packet sniffing or deauthentication attacks.                                                             |
 
 ### LoRa
 
@@ -65,19 +65,19 @@ LoRa (Long Range) is a low-power, long-range wireless protocol used in IoT (Inte
 
 Trade-offs and Design Choices
 
-| **Factor** | **LoRa Design Considerations** |
-|------------|--------------------------------|
-| Data Rate / Throughput | LoRa sacrifices data rate for range. Typical rates are 0.3 to 50 kbps, which is extremely low compared to WiFi but sufficient for IoT applications (sensor readings, GPS updates). |
-| Range | LoRa is designed for long-range communication, with urban ranges of 2–5 km and rural ranges up to 15 km in ideal conditions. |
-| Power | LoRa is designed for low-power operation, making it suitable for battery-powered devices that need to last for months or years without recharging. |
-| Multiple Access Control (MAC) | Uses ALOHA-based random access protocol, meaning collisions can occur, but since transmissions are infrequent, this is generally acceptable. |
-| Data Quantity | Optimized for small packets (sensor data, GPS coordinates). Large data transmissions (e.g., video, voice) are impractical. |
-| Spectral Usage | Uses narrowband channels (typically 125 kHz or 250 kHz), making it efficient in terms of spectral usage but limiting data rates. |
-| Noise Expectations | Designed to operate below the noise floor, meaning it can still function in noisy environments with significant interference. |
-| Synchronization | Uses preambles and coding schemes to ensure synchronization, though latency can be high due to long transmission times. |
-| Networking & Wide Access | Often used in star-of-stars topology, where devices communicate with gateways that relay data to cloud services. |
-| Processing Power | Very low processing power required, allowing for cheap, low-power microcontrollers. |
-| Security & Privacy | Uses AES-128 encryption, but security largely depends on network design and implementation. |
+| **Factor**                    | **LoRa Design Considerations**                                                                                                                                                     |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data Rate / Throughput        | LoRa sacrifices data rate for range. Typical rates are 0.3 to 50 kbps, which is extremely low compared to WiFi but sufficient for IoT applications (sensor readings, GPS updates). |
+| Range                         | LoRa is designed for long-range communication, with urban ranges of 2–5 km and rural ranges up to 15 km in ideal conditions.                                                       |
+| Power                         | LoRa is designed for low-power operation, making it suitable for battery-powered devices that need to last for months or years without recharging.                                 |
+| Multiple Access Control (MAC) | Uses ALOHA-based random access protocol, meaning collisions can occur, but since transmissions are infrequent, this is generally acceptable.                                       |
+| Data Quantity                 | Optimized for small packets (sensor data, GPS coordinates). Large data transmissions (e.g., video, voice) are impractical.                                                         |
+| Spectral Usage                | Uses narrowband channels (typically 125 kHz or 250 kHz), making it efficient in terms of spectral usage but limiting data rates.                                                   |
+| Noise Expectations            | Designed to operate below the noise floor, meaning it can still function in noisy environments with significant interference.                                                      |
+| Synchronization               | Uses preambles and coding schemes to ensure synchronization, though latency can be high due to long transmission times.                                                            |
+| Networking & Wide Access      | Often used in star-of-stars topology, where devices communicate with gateways that relay data to cloud services.                                                                   |
+| Processing Power              | Very low processing power required, allowing for cheap, low-power microcontrollers.                                                                                                |
+| Security & Privacy            | Uses AES-128 encryption, but security largely depends on network design and implementation.                                                                                        |
 
 ### Designing Your Own Protocol
 
