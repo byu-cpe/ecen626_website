@@ -6,9 +6,7 @@ number: 2
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 ## Overview
-In the last lab you learned one of the most popular modulation techniques with the frequency
-modulating radio. In this lab you will learn the second most popular audio modulation technique,
-amplitude modulation, as well as learn the techniques and concepts fundamental to all radio signals.
+In the last lab you learned one of the most popular modulation techniques with the frequency modulating radio. In this lab you will learn the second most popular audio modulation technique, amplitude modulation, as well as learn the techniques and concepts fundamental to all radio signals.
 
 ## Objectives
 After completing this lab you should be able to explain
