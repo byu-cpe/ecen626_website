@@ -29,7 +29,7 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-target-blank
-
+  
 # Turn on the button to allow students to submit PRs to change a page
 suggest_edits:
   enable: true
