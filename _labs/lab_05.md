@@ -199,8 +199,6 @@ Determining the appropriate polynomial for the LFSR used in whitening is crucial
 - Run your program using a range of different message lengths and bit error probability rates. Create a few graphs that illustrate the impact of interleaving and different Hamming codes on your transmission. What conclusions can you draw about the effectiveness of these techniques in improving error resilience?
 - Test your implementation thoroughly to ensure it meets the specified requirements.
 
-## Testing
-
 ## Resources
 
 - [Overview of Error Correction and Detection](https://en.wikipedia.org/wiki/Error_detection_and_correction)
