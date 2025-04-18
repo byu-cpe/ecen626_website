@@ -4,35 +4,35 @@ number: 4
 ---
 
 ## Overview
-In previous labs, you have learned how to use GNU Radio and have seen how it can make some tasks very easy. But there are also some things GNU Radio can’t do. There are also some steps, such as header generation or FEC that could be done with more detail in Python. In these situations, you would need a way to get data in or out of GNU Radio. In this lab, you will learn how to integrate ZeroMQ (ZMQ) with GNU Radio to pass data between different programs. Additionally, you will explore using XMLRPC to modify GNU Radio variables dynamically.
+In previous labs, you have learned how to use GNU Radio and have seen how it can make some tasks very easy. But there are also some things GNU Radio can’t do. There are also some steps, such as header generation or FEC that could be done with more detail in Python. In these situations, you need a way to get data in or out of GNU Radio. In this lab, you will learn how to integrate [ZeroMQ (ZMQ)](https://zeromq.org) with GNU Radio to pass data between different programs. Additionally, you will explore using [XMLRPC](https://wiki.gnuradio.org/index.php/Understanding_XMLRPC_Blocks) to modify GNU Radio variables dynamically.
 
 ### ZMQ
-ZeroMQ is an interprocess messaging library. It allows you to send data between processes through sockets. GNU Radio has several ZMQ blocks that provide different methodologies for communication such as: Publisher-Subscriber, Push-Pull, and Request-Reply. You may have come across these methodologies in other contexts, but you should at least review the diagrams for each method from the links below.
+[ZeroMQ](https://zeromq.org) is an interprocess messaging library. It allows you to send data between processes through sockets. GNU Radio has several [ZMQ blocks](https://wiki.gnuradio.org/index.php/Understanding_ZMQ_Blocks) that provide different methodologies for communication such as: Publisher-Subscriber, Push-Pull, and Request-Reply. You may have come across these methodologies in other contexts, but you should at least review the diagrams for each method from the links below:
 
-[Publisher-Subscriber](https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/pyzmq/patterns/pubsub.html)  
-[Push-Pull](https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/pyzmq/patterns/client_server.html)  
-[Request-Reply](https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/pyzmq/patterns/pushpull.html)  
+- [Publisher-Subscriber](https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/pyzmq/patterns/pubsub.html)  
+- [Push-Pull](https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/pyzmq/patterns/client_server.html)  
+- [Request-Reply](https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/pyzmq/patterns/pushpull.html)  
 
 ## Task 1
-Let’s get started with ZMQ without using GNU Radio. We will be using the publisher-subscriber model. For this task your goal is to read a text file into zmq_pub.py, send it to the subscriber with ZMQ, and write it to output.txt.
+Let’s get started with ZMQ without using GNU Radio. We will be using the publisher-subscriber model. For this task your goal is to read a text file into `zmq_pub.py`, send it to the subscriber with ZMQ, and write it to `output.txt`.
 
-- Create zmq_pub.py and zmq_sub.py.
-- Aquire a text file to send, or use the declaration of independance from [here](../files/declaration.txt). 
-- In zmq-pub.py read in the text file and break it up into chunks of 50 characters.
-- Publish each chuck with ZMQ to the topic "text_send"
-- Write code in zmq_sub.py to listen for messages from zmq_pub.py, and write them to an output file
+1. Create `zmq_pub.py` and `zmq_sub.py`.
+2. Aquire a text file to send, or use the declaration of independance from [here]({% link files/declaration.txt %}). 
+3. In `zmq-pub.py` read in the text file and break it up into chunks of 50 characters.
+4. Publish each chuck with ZMQ to the topic "text_send"
+5. Write code in `zmq_sub.py` to listen for messages from `zmq_pub.py`, and write them to an output file.
 
 
-If you are working in your radioconda environment, ZMQ python package should already be installed for you. Otherwise, install it using `pip install pyzmq`.
+If you are working in your radioconda environment, the ZMQ Python package should already be installed for you. Otherwise, install it using `pip install pyzmq`.
 
 ## Task 2
-Now lets take GNU Radio and put it in between your publisher and subscriber. Use [this](../files/send_through.py) GNU Radio flow graph . It uses OFDM blocks because they make it easy to send and receive characters. This will be an easy way for us to send text data without getting too far into the weeds of GNU Radio. 
+Now lets take GNU Radio and put it in between your publisher and subscriber. Use [this]({% link files/send_through.py %}) GNU Radio flow graph. It uses OFDM blocks because they make it easy to send and receive characters. This will be an easy way for us to send text data without getting too far into the weeds of GNU Radio. 
 
-- In the GRC flow graph, remove the vector source block, and replace it with the ZMQ Subscriber block. 
-- Try starting the flow graph and then running your task1_pub.py. Take a screenshot of what your GNU Radio GUI looks like while the data from the text file is being sent.
-- Add a ZMQ Publisher to the end of the flow graph.
-- You will have to update the port numbers and topics used for ZMQ as needed
-- Launch your GNU Radio flow and send the entire text file from your publisher to your subscriber.
+1. In the GRC flow graph, remove the vector source block, and replace it with the ZMQ Subscriber block. 
+2. Try starting the flow graph and then running your task1_pub.py. Take a screenshot of what your GNU Radio GUI looks like while the data from the text file is being sent.
+3. Add a ZMQ Publisher to the end of the flow graph.
+4. You will have to update the port numbers and topics used for ZMQ as needed
+5. Launch your GNU Radio flow and send the entire text file from your publisher to your subscriber.
 
 The idea of ZMQ is that you could add more pre-processing and post-processing work to your python scripts, and use GNU Radio for over the air transmission. 
 
